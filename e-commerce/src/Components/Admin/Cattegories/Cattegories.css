@@ -1,68 +1,127 @@
-/* Admin Panel Container */
-/* Categories.css */
+/* General styles for the admin panel container */
 .admin-panel-container {
-  width: 90%;
-  max-width: 1400px;
-  margin: 0 auto;
+  font-family: Arial, sans-serif;
   padding: 20px;
-  background-color: #f4f7fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
- 
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
 }
 
+/* Header styles */
 h2 {
-  text-align: center;
-  color: #333;
+  color: #343a40;
+  margin-bottom: 20px;
 }
 
-.category-management,
-.subcategory-management {
-  margin: 20px 0;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+/* Category and subcategory management sections */
+.category-management, .subcategory-management {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.category-management h3, .subcategory-management h3 {
+  color: #495057;
+  margin-bottom: 15px;
+}
 
+/* Input and button styles */
+input[type="text"], select {
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 200px;
+}
 
 button {
-  background-color: #2196F3;
-  color: white;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 16px;
+}
+
+button.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+button.btn-edit {
+  background-color: #ffc107;
+  color: #fff;
+}
+
+button.btn-delete {
+  background-color: #dc3545;
+  color: #fff;
 }
 
 button:hover {
-  background-color: #1e88e5;
+  opacity: 0.9;
 }
 
-.category {
-  margin: 15px 0;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+/* Category and subcategory card styles */
+.category-card, .subcategory-card {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.category-header {
+.category-header, .subcategory-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+
+.category-header h4, .subcategory-header span {
+  margin: 0;
+  color: #343a40;
+}
+
+.category-actions, .subcategory-actions {
+  display: flex;
   align-items: center;
 }
 
-.subcategories {
-  margin-left: 20px;
-  padding-left: 10px;
-  border-left: 2px solid #ccc;
+.category-actions button, .subcategory-actions button {
+  margin-left: 10px;
 }
 
-.subcategory {
-  margin: 5px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Specific styling for the delete button */
+.btn-delete {
+  background-color: #dc3545; /* Red background for delete button */
+  color: #fff; /* White text color */
+  border: 1px solid #dc3545; /* Matching border color */
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-delete:hover {
+  background-color: #c82333; /* Darker red for hover effect */
+  border-color: #c82333; /* Matching border color on hover */
+}
+
+.subcategory-list {
+  margin-top: 20px;
+}
+
+/* Ensuring mobile responsiveness */
+@media (max-width: 768px) {
+  .category-management, .subcategory-management {
+    padding: 15px;
+  }
+
+  input[type="text"], select, button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
 }

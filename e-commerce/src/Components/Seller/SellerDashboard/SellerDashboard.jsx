@@ -1,6 +1,6 @@
+
+
 import React, { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faBoxOpen, faMoneyBillAlt, faUsers } from '@fortawesome/free-solid-svg-icons';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -11,14 +11,15 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
+import { FaUsers, FaBoxOpen, FaMoneyBillAlt } from 'react-icons/fa';
 import './SellerDashboard.css';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const SellerDashboard = () => {
-    const navigate = useNavigate(); // Initialize the navigate function
-    const [activeMenuItem] = useState('Dashboard');
+    const navigate = useNavigate();
+    const [isSellerDashboard, setIsSellerDashboard] = useState(true); // State to manage dashboard type
 
     const salesData = {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -47,35 +48,49 @@ const SellerDashboard = () => {
     };
 
     const handleAddProduct = () => {
-        navigate('/ProductUpload'); // Redirect to the product upload page
+        navigate('/ProductUpload');
+    };
+
+    // Toggle function to switch between dashboards
+    const toggleDashboard = () => {
+        setIsSellerDashboard(!isSellerDashboard);
+        navigate(isSellerDashboard ? '/dashboard' : '/seller-dashboard'); // Navigate based on current state
     };
 
     return (
         <div className="seller-dashboard">
+            {/* Toggle Button Section */}
+          
+
             <main className="dashboard-mainn">
                 <div className="seller-main-content">
-                    {activeMenuItem === 'Dashboard' && (
+                    {isSellerDashboard && (
                         <div className="dashboard-overvieww">
                             <h2>Dashboard Overview</h2>
+                            <div className="dashboard-navigation">
+                <button onClick={toggleDashboard} className="toggle-button">
+                    {isSellerDashboard ? 'Switch to User Dashboard' : 'Switch to Seller Dashboard'}
+                </button>
+            </div>
                             <div className="dashboard-widgetss">
                                 <div className="dashboard-widgett users-widget">
                                     <h3>Total Users</h3>
                                     <div className="widget-contentt">
-                                        <span className="widget-iconn"><FontAwesomeIcon icon={faUsers} /></span>
+                                        <span className="widget-iconn"><FaUsers /></span>
                                         <span className="widget-dataa">500</span>
                                     </div>
                                 </div>
                                 <div className="dashboard-widgett products-widget">
                                     <h3>Total Products</h3>
                                     <div className="widget-contentt">
-                                        <span className="widget-iconn"><FontAwesomeIcon icon={faBoxOpen} /></span>
+                                        <span className="widget-iconn"><FaBoxOpen /></span>
                                         <span className="widget-dataa">200</span>
                                     </div>
                                 </div>
                                 <div className="dashboard-widgett sales-widget">
                                     <h3>Total Sales</h3>
                                     <div className="widget-contentt">
-                                        <span className="widget-iconn"><FontAwesomeIcon icon={faMoneyBillAlt} /></span>
+                                        <span className="widget-iconn"><FaMoneyBillAlt /></span>
                                         <span className="widget-dataa">₹1,500,000</span>
                                     </div>
                                 </div>
@@ -95,6 +110,7 @@ const SellerDashboard = () => {
                                     <h3>Sales Overview</h3>
                                     <Bar data={salesData} />
                                 </div>
+                               
                                 <div className="chart-widgett">
                                     <h3>Order Trends</h3>
                                     <Bar data={orderTrendsData} />
